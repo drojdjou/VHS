@@ -13,13 +13,11 @@ How does it look?
 
 VHS was used on a [Tool Christmas Card](http://demo.toolprototype.com/toolxmas/), that features a 2d tracking and dynamic compositing of WebGL elements.
 
-Below is a list of a few great examples of video tracking on the web:
+Video tracking was used mostly in Flash projects. Below is a list of a few of my favourite examples:
 
-[Take this Lollipop](http://www.takethislollipop.com/)
-
-[Museum of Me](http://www.intel.com/museumofme/en_US/r/index.htm)
-
-[Samsung Smart Park](http://www.samsungsmartpark.co.kr/)
+- [Take this Lollipop](http://www.takethislollipop.com/)
+- [Museum of Me](http://www.intel.com/museumofme/en_US/r/index.htm)
+- [Samsung Smart Park](http://www.samsungsmartpark.co.kr/)
 
 What challenges it poses?
 ---
