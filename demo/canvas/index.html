@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VHS Canvas v 0.23</title>
+
+    <style type="text/css">
+
+        body {
+            font-family: Arial;
+            font-size: 10px;
+        }
+
+        #videoContainer, #canvasContainer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        #markerContainer {
+            position: absolute;
+            top: 600px;
+            left: 10px;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="../../js/VHS.js"></script>
+
+    <script type="text/javascript">
+
+        var data, video, ctx, framenum;
+        var reading = false;
+
+        var vhs;
+
+        window.requestAnimFrame = (function() {
+            return  window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    function(callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+        })();
+
+        window.onload = function() {
+
+            var request = new XMLHttpRequest();
+            request.open("GET", "../track02.json");
+
+            request.onreadystatechange = function() {
+                if (request.readyState == 4) {
+                    data = JSON.parse(request.responseText).data;
+                    loadVideo();
+
+                }
+            }
+
+            request.send();
+        }
+
+        function loadVideo() {
+            
+            framenum = document.getElementById("framenum");
+
+            video = document.createElement('video');
+            video.width = 1024;
+            video.height = 576;
+            video.autoplay = true;
+            video.controls = true;
+            video.loop = true;
+            video.src = '../track02.mp4';
+            document.getElementById('videoContainer').appendChild(video);
+
+            var canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 576;
+            document.getElementById('canvasContainer').appendChild(canvas);
+
+            ctx = canvas.getContext('2d');
+
+            vhs = new VHS({
+                videoWidth: 1024,
+                videoHeight: 576
+            });
+
+            readMarker();
+        }
+
+        function readMarker() {
+            requestAnimFrame(readMarker);
+
+            var f = vhs.readFrame(video);
+            var d = data[f];
+
+            framenum.innerHTML = "F: " + f;
+
+            ctx.clearRect(0, 0, 1024, 576);
+
+            ctx.fillStyle = "rgba(200,0,0, 0.5)";
+            ctx.strokeStyle = 'rgb(0,0,0)';
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            ctx.moveTo(d[0], d[1]-2);
+
+            ctx.lineTo(d[2], d[3]-2);
+            ctx.lineTo(d[6], d[7]-2);
+            ctx.lineTo(d[4], d[5]-2);
+            ctx.lineTo(d[0], d[1]-2);
+
+            ctx.stroke();
+            ctx.fill();
+        }
+
+    </script>
+
+</head>
+<body>
+
+<div id="videoContainer"></div>
+
+<div id="canvasContainer"></div>
+
+<div id="markerContainer">
+    <canvas id="marker" width="256" height="4"></canvas>
+    <div id="framenum"></div>
+</div>
+
+</body>
+</html>
