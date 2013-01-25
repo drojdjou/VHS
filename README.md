@@ -8,6 +8,15 @@ What is it for?
 
 VHS will help you create advanced video effects in HTML5 known as tracking. It allows to overlay video with interactive/dynamic elements and have then follow features in the footage. The overlay elements can range from CSS to SVG, Canvas drawing or WebGL.
 
+Some examples below:
+
+- [Canvas /Desktop version/](http://everyday3d.com/vhs/demo/canvas/)
+- [Canvas /Tablet version/](http://everyday3d.com/vhs/demo/canvas/ipad.html)
+- [SVG /Desktop version/](http://everyday3d.com/vhs/demo/svg/)
+- [SVG /Tablet version/](http://everyday3d.com/vhs/demo/svg/ipad.html)
+
+Sadly Safari on iPad does not allow to copy portions of video to a canvas, so the binary marker cannot be read. Until this is fixed, the only way to read the frame on the iPad is to rely on the currentTime of the video. It is less accurate, which you should be able to see in the examples above.
+
 How does it look?
 ---
 
