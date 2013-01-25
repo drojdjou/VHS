@@ -4,7 +4,7 @@
 
 USAGE: ./parse_transform.py data-file.txt save-to-file.txt
 
-Works with TRansform data files and exports an array of mat2 (2D matrices)"""
+Works with Transform data files and exports an array of mat2 (2D matrices)"""
 
 import sys, os, re, math
 
